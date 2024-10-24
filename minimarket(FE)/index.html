@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+    <title>Klik Indomaret</title>
+    <link rel="shortcut icon" href="assets/ui/Untitled.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+    nav {
+        background: url(assets/ui/bg_header.jpg);
+    }
+    </style>
+
+</head>
+
+<body class="bg-bdoy">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-warning shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.php"><img src="assets/ui/logo.webp" style="width: 7rem;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav  me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-basket"></i> Kategori
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="products.php?category=Makanan"><i
+                                        class="bi bi-egg-fried"></i> Makanan</a></li>
+                            <li><a class="dropdown-item" href="products.php?category=Minuman"><i
+                                        class="bi bi-cup-straw"></i> Minuman</a></li>
+                            <li><a class="dropdown-item" href="products.php?category=Kesehatan"><i
+                                        class="bi bi-prescription2"></i> Kesehatan</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navbar-nav me-auto my-2 my-lg-0 ">
+                    <form action="search.php" method="get" class="d-flex mx-auto">
+                        <input name="keywords" class="form-control me-2 shadow-sm" style="width: 50vw;" type="text"
+                            placeholder="Mau beli apa hari ini?">
+                        <button title="Cari" class="btn btn-light shadow-sm" type="submit"><i class="bi bi-search"
+                                style="color:#ffbf00;"></i></button>
+                    </form>
+                </div>
+                <div class="navbar-nav">
+                    <?php if(isset($_SESSION["user-login"])) {?>
+                    <a href="system/logout.php" title="Logout"
+                        class="btn btn-light btn-outline-secondary me-2 shadow-sm">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </a>
+                    <a href="#" title="profile" class="btn btn-light btn-outline-primary me-2 shadow-sm">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <?php } else { ?>
+                    <a href="#" class="btn btn-light btn-outline-primary me-2 shadow-sm" data-bs-toggle="modal"
+                        data-bs-target="#userLogin">
+                        Masuk
+                    </a>
+                    <a href="#" class="btn btn-light btn-outline-primary me-2 shadow-sm" data-bs-toggle="modal"
+                        data-bs-target="#userRegister">
+                        Daftar
+                    </a>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="container-fluid mt-5 p-5 bg-light pt-5 pb-5">
+        <div class="alert alert-primary  alert-dismissible fade show" role="alert">
+            <i class="bi bi-info-circle-fill"></i> Mulai 17 Mei 2024, pengembalian dana untuk transaksi dengan
+            pembayaran ShopeePay, GoPay, Jenius Pay, dan OVO akan dialihkan sementara ke Saldo Klik.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" style="border-radius: 20px; height: 30rem;">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="assets/ui/hero_bnr_indomie-goreng-29-mei1.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="assets/ui/belanja-untung-revisi.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/hero_bnr_fun-gajian_25_mei.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/hero_bnr_kental-manis-harga-manis_29-mei.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/hero_bnr_payday-saro-roti.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/nivea-hansaplast-revisimei3.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/stay-safe-revisi-mei3.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/hero-beli-banyak-v1.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/ui/hero_bnr_travel-fest-1-mei-24.webp" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev  b-50" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"
+                    style="border-radius: 50px;"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next  b-50" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-primary " aria-hidden="true"
+                    style="border-radius: 50px;"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="card alert-primary  mt-4" style="border-radius: 15px;">
+            <div class="card-body">
+                <blockquote class="blockquote d-flex align-items-center justify-content-around mb-0 ">
+                    <h5>Produk Lainnya</h5>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-joystick"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-backpack2-fill"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-bank"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-fuel-pump-fill"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-gift-fill"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-houses-fill"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-lungs-fill"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-virus"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-windows"></i></h1>
+                    </button>
+                    <button type="button" class="btn botn btn-light">
+                        <h1><i class="bi bi-usb-plug-fill"></i></h1>
+                    </button>
+                </blockquote>
+            </div>
+        </div>
+        <div class="row mx-auto">
+            <h1 class="mb-4 mt-5"><i class="me-4"></i>Makanan</h1>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b29c87f0f.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Mie Goreng</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.10,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b73c270e6.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Telur Ayam Omega</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.23.000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b798b4e22.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Mie Goreng Pedas</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.8,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b7cf0f60f.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Emping Jagung</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.10,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b8131c8d0.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Roti Tawar</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.16,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658b88e6499c.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Gummy Candy</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.12,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <a href="products.php?<?="category=$catName">Cek Selengkapnya</a>
+        
+        </div>
+        <div class="row mx-auto">
+            <h1 class="mb-4 mt-5"><i class="me-4"></i>Minuman</h1>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658bced2656e.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Susu Tango</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.7,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658bd201f55e.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Susu Cair UHT</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.6,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659a7e7711d4.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Air MIneral Kemasan</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.30,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659a894bb6fd.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Juicy Pulpy Orange</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.8,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659a85b465cd.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Larutan</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.5,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6658bd5c1170c.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Susu Cair UHT</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.4,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <a href="products.php?<?="category=$catName"?>Cek Selengkapnya</a>
+        
+        </div>
+        </div>
+        <div class="row mx-auto">
+            <h1 class="mb-4 mt-5"><i class="me-4"></i>Kesehatan</h1>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659ad3eb2092.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Kalvanax Cream</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.17,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659ac85eff36.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Sakatonic ABC</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.25,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659a9217b335.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Sangobion</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.30,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659ad640e0f3.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Tolak Angin</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.14,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659ad10820b0.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Mylanta</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.17,000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 g-8">
+                <div class="card mb-3 mx-auto shadow-sm" style="max-width: 540px;">
+                    <div class="row-12">
+                        <div class="col-lg-12 d-flex justify-content-center align-items-center ">
+                            <img src="img/6659adcedac4d.jpg" class="img-thumbnail rounded" alt="...">
+                        </div>
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div style="height: 2rem;"><span style="font-size :0.8rem;"
+                                        class="fw-bold d-block">Paramex</span></div>
+                                <span class="card-text mt-2 mb-3 d-block"> Rp.23.000</span>
+                                <div class="row">
+                                    <div class="col-12 mx-auto">
+                                        <a href="buy.html">
+                                            <button type="button" class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#userLogin">
+                                                <i class="bi bi-cart"></i> Beli Sekarang
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <a href="products.php?<?="category=$catName"?>Cek Selengkapnya</a>
+        
+        </div>
+    </main>
+
+    <footer class="footer bg-body text-center">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <img src="assets/ui/logo.webp" alt="" height="50px" class="mb-3">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #3b5998;"
+                    href="#!" role="button"><i class="bi bi-facebook"></i></a>
+
+                <!-- Google -->
+                <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #dd4b39;"
+                    href="#!" role="button"><i class="bi bi-google"></i></a>
+
+                <!-- Instagram -->
+                <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: #ac2bac;"
+                    href="#!" role="button"><i class="bi bi-instagram"></i></a>
+
+                <!-- Whatsapp -->
+                <a data-mdb-ripple-init class="btn text-white btn-floating m-1" style="background-color: lime;"
+                    href="#!" role="button"><i class="bi bi-whatsapp"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2024 Copyright:
+            <a class="text-body" href="index.html">Klik Indomaret</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+    <div class="modal fade" id="userLogin" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-5">
+                <div class="row text-dark">
+                    <div class="col-md-9 mx-auto mb-3">
+                        <h1 class="h3 fw-bold text-center">User Login</h1>
+                    </div>
+
+                    <form action="" method="post">
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="username" name="username" class="form-control" id="username"
+                                aria-describedby="emailHelp" autocomplete="off">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <input type="checkbox" name="remember" class="form-check-input" id="remember-me">
+                            <label class="form-check-label" for="remember-me">Remember me</label>
+                        </div>
+                        <div class="col-md-9 mx-auto mb-5">
+                            <p>Don't have one? <a href="register.php">register here.</a></p>
+                        </div>
+                        <div class="col-md-9 mx-auto">
+                            <button type="submit" name="login-submit"
+                                class="form-control btn btn-primary btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="userRegister" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-5">
+                <div class="row text-dark">
+                    <div class="col-md-9 mx-auto mb-3">
+                        <h1 class="h3 fw-bold text-center">User Register</h1>
+                    </div>
+
+                    <form action="" method="post">
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="username" name="username" class="form-control" id="username"
+                                autocomplete="off">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" autocomplete="off">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            <input type="password" name="password2" class="form-control" id="password2">
+                        </div>
+
+                        <div class="col-md-9 mx-auto">
+                            <button type="submit" name="register-submit"
+                                class="form-control btn btn-primary btn-block">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="userLogin" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-5">
+                <div class="row text-dark">
+                    <div class="col-md-9 mx-auto mb-3">
+                        <h1 class="h3 fw-bold text-center">User Login</h1>
+                    </div>
+
+                    <form action="" method="post">
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="username" name="username" class="form-control" id="username"
+                                aria-describedby="emailHelp" autocomplete="off">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="col-md-9 mx-auto mb-3">
+                            <input type="checkbox" name="remember" class="form-check-input" id="remember-me">
+                            <label class="form-check-label" for="remember-me">Remember me</label>
+                        </div>
+                        <div class="col-md-9 mx-auto mb-5">
+                            <p>Don't have one? <a href="register.php">register here.</a></p>
+                        </div>
+                        <div class="col-md-9 mx-auto">
+                            <button type="submit" name="login-submit"
+                                class="form-control btn btn-primary btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
